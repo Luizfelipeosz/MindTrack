@@ -1,79 +1,96 @@
-🧠 MindTrack
-<p align="center"> Aplicação SPA desenvolvida com <b>React</b> focada em análise emocional com dashboard interativo, arquitetura modular e experiência moderna no padrão SaaS. </p> <p align="center"> <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" /> <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" /> <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" /> <img src="https://img.shields.io/badge/TailwindCSS-0F172A?style=for-the-badge&logo=tailwindcss&logoColor=38BDF8" /> </p>
-🚀 Sobre o projeto
+# fast-deep-equal
+The fastest deep equal with ES6 Map, Set and Typed arrays support.
 
-O MindTrack é uma aplicação SPA que simula uma plataforma de monitoramento e análise emocional.
+[![Build Status](https://travis-ci.org/epoberezkin/fast-deep-equal.svg?branch=master)](https://travis-ci.org/epoberezkin/fast-deep-equal)
+[![npm](https://img.shields.io/npm/v/fast-deep-equal.svg)](https://www.npmjs.com/package/fast-deep-equal)
+[![Coverage Status](https://coveralls.io/repos/github/epoberezkin/fast-deep-equal/badge.svg?branch=master)](https://coveralls.io/github/epoberezkin/fast-deep-equal?branch=master)
 
-O projeto foi desenvolvido com foco em:
 
-Componentização escalável
-Arquitetura organizada
-Gerenciamento de estado
-Experiência moderna de interface
-Boas práticas de Front-End
-Estrutura reutilizável e de fácil manutenção
+## Install
 
-Além da interface SaaS moderna, a aplicação demonstra preocupação com organização de código, separação de responsabilidades e experiência do usuário.
+```bash
+npm install fast-deep-equal
+```
 
-✨ Funcionalidades
-🔐 Autenticação simulada
-📊 Dashboard interativo
-📈 Visualização de métricas emocionais
-🧩 Componentes reutilizáveis
-⚡ Navegação SPA
-📱 Interface responsiva
-🎨 UI moderna inspirada em plataformas SaaS
-🗂️ Estrutura modular e escalável
-🛠️ Tecnologias utilizadas
-React
-TypeScript
-Vite
-Tailwind CSS
-React Router
-Context API
-🧱 Estrutura do projeto
 
-O projeto segue uma arquitetura organizada para facilitar manutenção e escalabilidade:
+## Features
 
-src/
-├── components/
-├── pages/
-├── contexts/
-├── hooks/
-├── services/
-├── layouts/
-├── routes/
-└── styles/
-🎯 Objetivos do projeto
+- ES5 compatible
+- works in node.js (8+) and browsers (IE9+)
+- checks equality of Date and RegExp objects by value.
 
-Este projeto foi criado para praticar e demonstrar:
+ES6 equal (`require('fast-deep-equal/es6')`) also supports:
+- Maps
+- Sets
+- Typed arrays
 
-Organização de aplicações Front-End em escala
-Criação de dashboards modernos
-Gerenciamento de estado global
-Estruturação de interfaces reutilizáveis
-Boas práticas com React e TypeScript
-Desenvolvimento de aplicações com visual profissional
-📸 Preview
-<p align="center"> <i>Adicione aqui screenshots do dashboard ou GIF da aplicação.</i> </p>
-⚙️ Como executar o projeto
-# Clone o repositório
-git clone <url-do-repositorio>
 
-# Acesse a pasta
-cd mindtrack
+## Usage
 
-# Instale as dependências
-npm install
+```javascript
+var equal = require('fast-deep-equal');
+console.log(equal({foo: 'bar'}, {foo: 'bar'})); // true
+```
 
-# Execute o projeto
-npm run dev
-📌 Status
+To support ES6 Maps, Sets and Typed arrays equality use:
 
-🚧 Projeto em desenvolvimento e evolução contínua.
+```javascript
+var equal = require('fast-deep-equal/es6');
+console.log(equal(Int16Array([1, 2]), Int16Array([1, 2]))); // true
+```
 
-👨‍💻 Autor
+To use with React (avoiding the traversal of React elements' _owner
+property that contains circular references and is not needed when
+comparing the elements - borrowed from [react-fast-compare](https://github.com/FormidableLabs/react-fast-compare)):
 
-Feito por Luiz Felipe Oliveira Souza
+```javascript
+var equal = require('fast-deep-equal/react');
+var equal = require('fast-deep-equal/es6/react');
+```
 
-<p align="left"> <a href="https://linkedin.com/in/luiz-felipe-o-souza-9a488b372/"> <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/> </a> </p>
+
+## Performance benchmark
+
+Node.js v12.6.0:
+
+```
+fast-deep-equal x 261,950 ops/sec ±0.52% (89 runs sampled)
+fast-deep-equal/es6 x 212,991 ops/sec ±0.34% (92 runs sampled)
+fast-equals x 230,957 ops/sec ±0.83% (85 runs sampled)
+nano-equal x 187,995 ops/sec ±0.53% (88 runs sampled)
+shallow-equal-fuzzy x 138,302 ops/sec ±0.49% (90 runs sampled)
+underscore.isEqual x 74,423 ops/sec ±0.38% (89 runs sampled)
+lodash.isEqual x 36,637 ops/sec ±0.72% (90 runs sampled)
+deep-equal x 2,310 ops/sec ±0.37% (90 runs sampled)
+deep-eql x 35,312 ops/sec ±0.67% (91 runs sampled)
+ramda.equals x 12,054 ops/sec ±0.40% (91 runs sampled)
+util.isDeepStrictEqual x 46,440 ops/sec ±0.43% (90 runs sampled)
+assert.deepStrictEqual x 456 ops/sec ±0.71% (88 runs sampled)
+
+The fastest is fast-deep-equal
+```
+
+To run benchmark (requires node.js 6+):
+
+```bash
+npm run benchmark
+```
+
+__Please note__: this benchmark runs against the available test cases. To choose the most performant library for your application, it is recommended to benchmark against your data and to NOT expect this benchmark to reflect the performance difference in your application.
+
+
+## Enterprise support
+
+fast-deep-equal package is a part of [Tidelift enterprise subscription](https://tidelift.com/subscription/pkg/npm-fast-deep-equal?utm_source=npm-fast-deep-equal&utm_medium=referral&utm_campaign=enterprise&utm_term=repo) - it provides a centralised commercial support to open-source software users, in addition to the support provided by software maintainers.
+
+
+## Security contact
+
+To report a security vulnerability, please use the
+[Tidelift security contact](https://tidelift.com/security).
+Tidelift will coordinate the fix and disclosure. Please do NOT report security vulnerability via GitHub issues.
+
+
+## License
+
+[MIT](https://github.com/epoberezkin/fast-deep-equal/blob/master/LICENSE)
