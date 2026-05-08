@@ -47,7 +47,9 @@ src/
  ├── hooks/
  ├── layouts/
  └── utils/
- 
+
+ ---
+ ```
 ⚙️ Instalação
 
 Clone o projeto:
@@ -75,3 +77,15 @@ componentização
 gerenciamento de estado
 experiência do usuário
 escalabilidade
+
+🎯 Objetivo do projeto
+
+Este projeto foi desenvolvido com foco em prática de arquitetura front-end moderna, componentização e construção de interfaces próximas de aplicações reais utilizadas no mercado.
+
+👨‍💻 Autor
+Luiz Felipe Oliveira Souza
+
+Desenvolvedor Front-End focado em React.js, TypeScript e construção de aplicações modernas.
+
+LinkedIn
+GitHub
