@@ -48,3 +48,30 @@ src/
  ├── layouts/
  └── utils/
  
+⚙️ Instalação
+
+Clone o projeto:
+
+git clone <repositorio>
+
+Acesse a pasta:
+
+cd mindtrack
+
+Instale as dependências:
+
+npm install
+
+Inicie o projeto:
+
+npm run dev
+
+📸 Preview
+
+O MindTrack foi projetado para simular um cenário real de aplicação moderna, focando em:
+
+organização de código
+componentização
+gerenciamento de estado
+experiência do usuário
+escalabilidade
